@@ -115,7 +115,7 @@ const registerUser = async (req, res) => {
 // Get all users
 const getUsers = async (req, res) => {
   try {
-    const users = await User.find({});
+    const users = await User.find().select('-user_password');
     res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -126,7 +126,7 @@ const getUsers = async (req, res) => {
 const getUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const user = await User.findById(id);
+    const user = await User.findById(id).select('-user_password');
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -135,8 +135,6 @@ const getUser = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
-
 
 // Update an existing user
 const updateUser = async (req, res) => {
