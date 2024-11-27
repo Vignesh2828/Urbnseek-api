@@ -25,11 +25,11 @@ app.get("/", (req, res) => {
 
 // Local MongoDB connection string
 mongoose
-  .connect(process.env.connectURL || 'mongodb://localhost:27017/urbnseek')
+  .connect(process.env.MONGO_CONNECT_URL || 'mongodb://localhost:27017/urbnseek')
   .then(() => {
     console.log("Connected to local database!");
-    app.listen(process.env.PORT || 8080, () => {
-      console.log(`Server is running on port ${process.env.PORT || 8080}`);
+    app.listen(process.env.PORT || 3000, () => {
+      console.log(`Server is running on port ${process.env.PORT || 3000}`);
     });
   })
   .catch((err) => {
