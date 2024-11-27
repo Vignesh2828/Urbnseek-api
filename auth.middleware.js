@@ -11,7 +11,7 @@ const authenticateUser = async (req, res, next) => {
 
   try {
     // Verify the token and decode the payload
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'urbnseek-user-jwt-secret-key');
 
     // Find the user by the user_id (in the decoded token) and set it in req.user
     req.user = await User.findById(decoded.user_id).select('-user_password');
