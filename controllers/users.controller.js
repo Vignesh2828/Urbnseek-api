@@ -31,7 +31,7 @@ const jwt = require("jsonwebtoken");
           user_name: user.user_name,
           user_city: user.user_city,
         },
-        process.env.JWT_SECRET,
+        process.env.JWT_SECRET || 'urbnseek-user-jwt-secret-key',
         { expiresIn: '1h' }
       );
   
@@ -101,7 +101,7 @@ const registerUser = async (req, res) => {
           user_name: newUser.user_name,
           user_city: newUser.user_city,
         },
-        process.env.JWT_SECRET,
+        process.env.JWT_SECRET || 'urbnseek-user-jwt-secret-key',
         { expiresIn: '1h' }
       );
   
